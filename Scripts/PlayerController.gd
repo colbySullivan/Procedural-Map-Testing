@@ -35,7 +35,9 @@ func _physics_process(delta):
 	
 	check_animation_orientation()
 	
-	print(velocity.x)
+	fall_check()
+	
+	print(position.y)
 	move_and_slide()
 
 func horizontal_movement():
@@ -49,6 +51,10 @@ func horizontal_movement():
 		#velocity.x -= 1.0
 	else:
 		velocity.x = lerp(velocity.x, 0.0, 1)
+
+func fall_check():
+	if position.y > 100:
+		get_tree().reload_current_scene()
 
 # handle animations
 func check_animation_orientation():
