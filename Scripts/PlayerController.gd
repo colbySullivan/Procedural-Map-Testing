@@ -30,9 +30,17 @@ func _physics_process(delta):
 	
 	# jumping
 	if Input.is_action_just_pressed("jump"):
+		# TODO set up jump animation
+		animated_tree.get("parameters/playback").travel("Jumping")
 		velocity.y = -jump_force
 		
 	# handle animations
-	animated_tree.set("parameters/idle/blend_position", velocity.x)
+	if velocity.x == 0:
+		animated_tree.get("parameters/playback").travel("idle")
+	else:
+		animated_tree.get("parameters/playback").travel("walking")
+		animated_tree.set("parameters/idle/blend_position", velocity.x)
+		animated_tree.set("parameters/walking/blend_position", velocity.x)
+		
 	move_and_slide()
 	
