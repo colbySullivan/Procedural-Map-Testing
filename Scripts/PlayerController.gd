@@ -7,6 +7,8 @@ extends CharacterBody2D
 @onready var animated_sprite = $AnimationPlayer
 @onready var animated_tree = $AnimationTree
 
+var can_jump = true
+
 #func _process(delta):
 	# animation handling
 	#if Input.is_action_pressed("move_right") || Input.is_action_pressed("move_left"):
@@ -15,32 +17,44 @@ extends CharacterBody2D
 		#animated_sprite.play("Idle")
 
 func _physics_process(delta):
-	# gravity
+	# gravity and floor check
 	if is_on_floor() == false:
 		velocity.y += gravity * delta
+		can_jump = false
 	
-	# left and right movement
-	#var direction = Input.get_axis("move_left","move_right")
-	#velocity.x += direction * speed
-	if Input.is_action_pressed("move_right"):
-		velocity.x += 1.0
-	if Input.is_action_pressed("move_left"):
-		velocity.x -= 1.0
+	else:
+		can_jump = true
 		
+	horizontal_movement()
 	
 	# jumping
-	if Input.is_action_just_pressed("jump"):
+	if Input.is_action_just_pressed("jump") && can_jump:
 		# TODO set up jump animation
 		animated_tree.get("parameters/playback").travel("Jumping")
 		velocity.y = -jump_force
-		
-	# handle animations
-	if velocity.x == 0:
+	
+	check_animation_orientation()
+	
+	print(velocity.x)
+	move_and_slide()
+
+func horizontal_movement():
+	# left and right movement
+	if Input.is_action_pressed("move_right") || Input.is_action_pressed("move_left"):
+		var direction = Input.get_axis("move_left","move_right")
+		velocity.x += direction * speed
+	#if Input.is_action_pressed("move_right"):
+		#velocity.x += 1.0
+	#if Input.is_action_pressed("move_left"):
+		#velocity.x -= 1.0
+	else:
+		velocity.x = lerp(velocity.x, 0.0, 1)
+
+# handle animations
+func check_animation_orientation():
+	if velocity.x == 0.0:
 		animated_tree.get("parameters/playback").travel("idle")
 	else:
 		animated_tree.get("parameters/playback").travel("walking")
 		animated_tree.set("parameters/idle/blend_position", velocity.x)
 		animated_tree.set("parameters/walking/blend_position", velocity.x)
-		
-	move_and_slide()
-	

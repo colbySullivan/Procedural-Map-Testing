@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://kh5voy7l58ar" path="res://Prefabs/TheWizard.png" id="2_ijby4"]
 
 [sub_resource type="Animation" id="Animation_5rl5e"]
-length = 2.0
+length = 0.4
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -25,10 +25,10 @@ tracks/1/path = NodePath("CharacterBody2D/Sprite2D:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = false
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.5, 0.9, 1.3),
+"times": PackedFloat32Array(-0.1, 0, 0.1, 0.2),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [8, 3, 8, 9]
+"values": [8, 8, 9, 3]
 }
 
 [sub_resource type="Animation" id="Animation_8ova2"]
@@ -115,7 +115,7 @@ tracks/1/keys = {
 }
 
 [sub_resource type="Animation" id="Animation_tund5"]
-length = 2.0
+length = 0.4
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -136,10 +136,10 @@ tracks/1/path = NodePath("CharacterBody2D/Sprite2D:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = false
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.5, 0.9, 1.3),
+"times": PackedFloat32Array(-0.1, 0, 0.1, 0.2),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [7, 10, 11, 7]
+"values": [7, 7, 10, 11]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_5jwlp"]
@@ -206,7 +206,7 @@ position = Vector2(1.5, -6)
 texture = ExtResource("2_ijby4")
 hframes = 4
 vframes = 3
-frame = 3
+frame = 11
 metadata/_aseprite_wizard_config_ = {
 "i_mode": -1,
 "keep_anim_length": false,
