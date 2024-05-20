@@ -62,10 +62,12 @@ func check_animation_orientation():
 		animated_tree.set("parameters/idle/blend_position", velocity.x)
 		animated_tree.set("parameters/walking/blend_position", velocity.x)
 
+# TODO need a better way of doing
+# Also there is a snapping back issue when user releases in the air
 func check_ghosting_orientation(ghost):
-	if velocity.x >= 0:
+	if velocity.x > 0:
 		ghost.flip_h = false
-	else:
+	elif velocity.x < 0:
 		ghost.flip_h = true
 		
 func add_ghost():
