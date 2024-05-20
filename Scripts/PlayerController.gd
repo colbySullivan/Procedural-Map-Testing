@@ -5,13 +5,14 @@ extends CharacterBody2D
 @export var jump_force = 200
 
 @onready var animated_sprite = $AnimationPlayer
+@onready var animated_tree = $AnimationTree
 
-func _process(delta):
+#func _process(delta):
 	# animation handling
-	if Input.is_action_pressed("move_right") || Input.is_action_pressed("move_left"):
-		animated_sprite.play("Walking")
-	else:
-		animated_sprite.play("Idle")
+	#if Input.is_action_pressed("move_right") || Input.is_action_pressed("move_left"):
+		#animated_sprite.play("Walking")
+	#else:
+		#animated_sprite.play("Idle")
 
 func _physics_process(delta):
 	# gravity
@@ -19,11 +20,19 @@ func _physics_process(delta):
 		velocity.y += gravity * delta
 	
 	# left and right movement
-	var direction = Input.get_axis("move_left","move_right")
-	velocity.x += direction * speed
+	#var direction = Input.get_axis("move_left","move_right")
+	#velocity.x += direction * speed
+	if Input.is_action_pressed("move_right"):
+		velocity.x += 1.0
+	if Input.is_action_pressed("move_left"):
+		velocity.x -= 1.0
+		
 	
 	# jumping
 	if Input.is_action_just_pressed("jump"):
 		velocity.y = -jump_force
+		
+	# handle animations
+	animated_tree.set("parameters/idle/blend_position", velocity.x)
 	move_and_slide()
 	

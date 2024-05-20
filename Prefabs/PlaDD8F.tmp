@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://b6ngsp4nesye4"]
+[gd_scene load_steps=17 format=3 uid="uid://b6ngsp4nesye4"]
 
 [ext_resource type="Script" path="res://Scripts/PlayerController.gd" id="1_rgk1n"]
 [ext_resource type="Texture2D" uid="uid://kh5voy7l58ar" path="res://Prefabs/TheWizard.png" id="2_ijby4"]
@@ -32,7 +32,8 @@ tracks/1/keys = {
 }
 
 [sub_resource type="Animation" id="Animation_8ova2"]
-length = 5.0
+length = 0.4
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -52,7 +53,7 @@ tracks/1/path = NodePath("CharacterBody2D/Sprite2D:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = false
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 1.1, 2, 3.6),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
 "values": [0, 1, 2, 3]
@@ -154,27 +155,37 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8wvl8"]
 size = Vector2(15, 20)
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_4osm2"]
-animation = &"WalkingLeft"
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_yqmmb"]
+animation = &"IdleLeft"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_jknmq"]
-animation = &"Walking"
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_cgctg"]
+animation = &"Idle"
 
-[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_5tw1k"]
-blend_point_0/node = SubResource("AnimationNodeAnimation_4osm2")
-blend_point_0/pos = -1.0
-blend_point_1/node = SubResource("AnimationNodeAnimation_jknmq")
-blend_point_1/pos = 1.0
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_0c15v"]
+animation = &"Jumping"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_kjtk3"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_bnljf"]
+animation = &"Jumping"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_qt8f0"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_yqmmb")
+blend_point_0/pos = Vector2(-1, 0)
+blend_point_1/node = SubResource("AnimationNodeAnimation_cgctg")
+blend_point_1/pos = Vector2(1, 0)
+blend_point_2/node = SubResource("AnimationNodeAnimation_0c15v")
+blend_point_2/pos = Vector2(0, 1)
+blend_point_3/node = SubResource("AnimationNodeAnimation_bnljf")
+blend_point_3/pos = Vector2(0, -1)
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_xu003"]
 advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_to3pp"]
+states/BlendSpace2D/node = SubResource("AnimationNodeBlendSpace2D_qt8f0")
+states/BlendSpace2D/position = Vector2(412, 100.667)
 states/End/position = Vector2(900, 100.222)
-states/Start/position = Vector2(174.667, 107.63)
-states/idle/node = SubResource("AnimationNodeBlendSpace1D_5tw1k")
-states/idle/position = Vector2(412.667, 84)
-transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_kjtk3")]
+states/Start/position = Vector2(174.667, 108.296)
+transitions = ["Start", "BlendSpace2D", SubResource("AnimationNodeStateMachineTransition_xu003")]
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
 position = Vector2(-1.5, 6)
@@ -220,4 +231,4 @@ zoom = Vector2(3, 3)
 root_node = NodePath("../..")
 tree_root = SubResource("AnimationNodeStateMachine_to3pp")
 anim_player = NodePath("../AnimationPlayer")
-parameters/idle/blend_position = -0.554282
+parameters/BlendSpace2D/blend_position = Vector2(0.0035187, 0.817109)
