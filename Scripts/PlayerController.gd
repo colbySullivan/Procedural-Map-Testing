@@ -9,6 +9,8 @@ extends CharacterBody2D
 
 var can_jump = true
 
+@export var ghost_node : PackedScene
+@onready var ghost_timer = $GhostTimer
 #func _process(delta):
 	# animation handling
 	#if Input.is_action_pressed("move_right") || Input.is_action_pressed("move_left"):
@@ -64,3 +66,22 @@ func check_animation_orientation():
 		animated_tree.get("parameters/playback").travel("walking")
 		animated_tree.set("parameters/idle/blend_position", velocity.x)
 		animated_tree.set("parameters/walking/blend_position", velocity.x)
+
+func check_ghosting_orientation(ghost):
+	if velocity.x >= 0:
+		ghost.flip_h = false
+	else:
+		ghost.flip_h = true
+		
+func add_ghost():
+	var ghost = ghost_node.instantiate()
+	#ghost.set_property(position, $Sprite2D.scale)
+	# need to offset y due to scene pos issues
+	ghost.position = position + Vector2(0,-6)
+	check_ghosting_orientation(ghost)
+	get_tree().current_scene.add_child(ghost)
+	#pass
+
+
+func _on_ghost_timer_timeout():
+	add_ghost()
