@@ -247,7 +247,7 @@ parameters/idle/blend_position = 1.0
 parameters/walking/blend_position = -1.0
 
 [node name="GhostTimer" type="Timer" parent="."]
-wait_time = 0.11
+wait_time = 0.1
 autostart = true
 
 [connection signal="timeout" from="GhostTimer" to="." method="_on_ghost_timer_timeout"]

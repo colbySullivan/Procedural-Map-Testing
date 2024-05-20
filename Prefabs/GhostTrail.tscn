@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://c1i2uhhlaw1ns"]
 
-[ext_resource type="Script" path="res://Prefabs/Ghost.gd" id="2_ihy8h"]
+[ext_resource type="Script" path="res://Scripts/Ghost.gd" id="1_62fma"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_nmhju"]
 load_path = "res://.godot/imported/TheWizard.png-bb1edb7fd4275cb40338e246f4828f2d.ctex"
@@ -14,7 +14,7 @@ texture = SubResource("CompressedTexture2D_nmhju")
 hframes = 4
 vframes = 3
 frame = 3
-script = ExtResource("2_ihy8h")
+script = ExtResource("1_62fma")
 metadata/_aseprite_wizard_config_ = {
 "i_mode": -1,
 "keep_anim_length": false,
