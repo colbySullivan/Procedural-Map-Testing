@@ -36,10 +36,7 @@ func _physics_process(delta):
 		velocity.y = -jump_force
 	
 	check_animation_orientation()
-	
 	fall_check()
-	
-	print(position.y)
 	move_and_slide()
 
 func horizontal_movement():
@@ -47,11 +44,9 @@ func horizontal_movement():
 	if Input.is_action_pressed("move_right") || Input.is_action_pressed("move_left"):
 		var direction = Input.get_axis("move_left","move_right")
 		velocity.x += direction * speed
-	#if Input.is_action_pressed("move_right"):
-		#velocity.x += 1.0
-	#if Input.is_action_pressed("move_left"):
-		#velocity.x -= 1.0
 	else:
+		# TODO there is a case where this step is missed due to the user holding the opposite direction
+		# therefore I need to rewrite the friction method
 		velocity.x = lerp(velocity.x, 0.0, 1)
 
 func fall_check():
