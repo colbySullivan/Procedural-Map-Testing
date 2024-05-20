@@ -8,6 +8,8 @@ extends CharacterBody2D
 @onready var animated_tree = $AnimationTree
 
 var can_jump = true
+# use this for dashing
+var moving = false
 
 @export var ghost_node : PackedScene
 @onready var ghost_timer = $GhostTimer
@@ -44,9 +46,11 @@ func horizontal_movement():
 	if Input.is_action_pressed("move_right") || Input.is_action_pressed("move_left"):
 		var direction = Input.get_axis("move_left","move_right")
 		velocity.x += direction * speed
-	else:
+		moving = true
+	elif is_on_floor() == true:
 		# TODO there is a case where this step is missed due to the user holding the opposite direction
 		# therefore I need to rewrite the friction method
+		moving = false
 		velocity.x = lerp(velocity.x, 0.0, 1)
 
 func fall_check():
@@ -72,7 +76,6 @@ func check_ghosting_orientation(ghost):
 		
 func add_ghost():
 	var ghost = ghost_node.instantiate()
-	#ghost.set_property(position, $Sprite2D.scale)
 	# need to offset y due to scene pos issues
 	ghost.position = position + Vector2(0,-6)
 	check_ghosting_orientation(ghost)
@@ -81,4 +84,5 @@ func add_ghost():
 
 
 func _on_ghost_timer_timeout():
-	add_ghost()
+	if moving == true:
+		add_ghost()

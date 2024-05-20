@@ -2,10 +2,6 @@ extends Sprite2D
 
 func _ready():
 	ghosting()
-
-func set_property(tx_pos, tx_scale):
-	position = tx_pos
-	scale = tx_pos
 	
 func ghosting():
 	var tween_fade = get_tree().create_tween()
