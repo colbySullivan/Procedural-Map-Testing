@@ -154,7 +154,7 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8wvl8"]
-size = Vector2(15, 20)
+size = Vector2(14, 11)
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_44lmt"]
 animation = &"Jumping"
@@ -205,7 +205,8 @@ ghost_node = ExtResource("2_g1vof")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
-position = Vector2(1.5, -6)
+position = Vector2(3, -3)
+scale = Vector2(0.90625, 0.8125)
 texture = ExtResource("2_ijby4")
 hframes = 4
 vframes = 3
@@ -234,6 +235,7 @@ libraries = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 4.5)
 shape = SubResource("RectangleShape2D_8wvl8")
 
 [node name="Camera2D" type="Camera2D" parent="."]

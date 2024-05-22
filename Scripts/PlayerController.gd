@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
-@export var gravity = 400
-@export var speed = 5
+@export var mouse_speed = 200
+@export var key_speed = 5
 
 @onready var animated_sprite = $AnimationPlayer
 @onready var animated_tree = $AnimationTree
@@ -12,36 +12,29 @@ var going_ghost = false
 
 @export var ghost_node : PackedScene
 @onready var ghost_timer = $GhostTimer
-#func _process(delta):
-	# animation handling
-	#if Input.is_action_pressed("move_right") || Input.is_action_pressed("move_left"):
-		#animated_sprite.play("Walking")
-	#else:
-		#animated_sprite.play("Idle")
+
+var target = null
+
+func _input(event):
+	if event.is_action_pressed("click"):
+		target = get_global_mouse_position()
 
 func _physics_process(delta):
-	if Input.is_action_pressed("dash"):
-		going_ghost = true
-	else:
-		going_ghost = false
+	if target:
+		# look_at(target)
+		velocity = position.direction_to(target) * mouse_speed
+		if position.distance_to(target) < 10:
+			velocity = Vector2.ZERO
+			
+	is_dashing()
 	horizontal_movement()
-	
 	check_animation_orientation()
-	fall_check()
 	move_and_slide()
 
 func horizontal_movement():
 	# left and right movement
 	var direction = Input.get_vector("move_left","move_right","move_up","move_down")
-	velocity += direction * speed
-	if velocity:
-		moving = true
-	else:
-		moving = false
-
-func fall_check():
-	if position.y > 2000:
-		get_tree().reload_current_scene()
+	velocity += direction * key_speed
 
 # handle animations
 func check_animation_orientation():
@@ -70,5 +63,11 @@ func add_ghost():
 
 
 func _on_ghost_timer_timeout():
-	if moving && going_ghost:
+	if velocity != Vector2.ZERO && going_ghost:
 		add_ghost()
+		
+func is_dashing():
+	if Input.is_action_pressed("dash"):
+		going_ghost = true
+	else:
+		going_ghost = false
