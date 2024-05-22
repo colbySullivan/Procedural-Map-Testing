@@ -2,14 +2,13 @@ extends CharacterBody2D
 
 @export var gravity = 400
 @export var speed = 5
-@export var jump_force = 200
 
 @onready var animated_sprite = $AnimationPlayer
 @onready var animated_tree = $AnimationTree
 
-var can_jump = true
-# use this for dashing
+# use this for dashing and ghosting effect
 var moving = false
+var going_ghost = false
 
 @export var ghost_node : PackedScene
 @onready var ghost_timer = $GhostTimer
@@ -21,21 +20,11 @@ var moving = false
 		#animated_sprite.play("Idle")
 
 func _physics_process(delta):
-	# gravity and floor check
-	#if is_on_floor() == false:
-		#velocity.y += gravity * delta
-		#can_jump = false
-	#
-	#else:
-		#can_jump = true
-		
+	if Input.is_action_pressed("dash"):
+		going_ghost = true
+	else:
+		going_ghost = false
 	horizontal_movement()
-	
-	# jumping
-	if Input.is_action_just_pressed("jump") && can_jump:
-		# TODO set up jump animation
-		animated_tree.get("parameters/playback").travel("Jumping")
-		velocity.y = -jump_force
 	
 	check_animation_orientation()
 	fall_check()
@@ -43,15 +32,12 @@ func _physics_process(delta):
 
 func horizontal_movement():
 	# left and right movement
-	if Input.is_action_pressed("move_right") || Input.is_action_pressed("move_left"):
-		var direction = Input.get_axis("move_left","move_right")
-		velocity.x += direction * speed
+	var direction = Input.get_vector("move_left","move_right","move_up","move_down")
+	velocity += direction * speed
+	if velocity:
 		moving = true
-	elif is_on_floor() == true:
-		# TODO there is a case where this step is missed due to the user holding the opposite direction
-		# therefore I need to rewrite the friction method
+	else:
 		moving = false
-		velocity.x = lerp(velocity.x, 0.0, 1)
 
 func fall_check():
 	if position.y > 2000:
@@ -84,5 +70,5 @@ func add_ghost():
 
 
 func _on_ghost_timer_timeout():
-	if moving == true:
+	if moving && going_ghost:
 		add_ghost()
