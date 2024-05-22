@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://d0sa8sg0qiuar"
+path="res://.godot/imported/city.aseprite-4c90b209f4bd6273bfd53be8df892dd1.res"
+
+[deps]
+
+source_file="res://Assets/Paid/Legacy Fantasy - Kingdom Fortress - Update/Tiles/city.aseprite"
+dest_files=["res://.godot/imported/city.aseprite-4c90b209f4bd6273bfd53be8df892dd1.res"]
+
+[params]
+

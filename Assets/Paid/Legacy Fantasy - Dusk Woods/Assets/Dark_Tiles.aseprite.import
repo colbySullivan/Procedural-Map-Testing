@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://ba8tq7amvrimd"
+path="res://.godot/imported/Dark_Tiles.aseprite-d762909b064fd7e3bcb51298f0834caa.res"
+
+[deps]
+
+source_file="res://Assets/Paid/Legacy Fantasy - Dusk Woods/Assets/Dark_Tiles.aseprite"
+dest_files=["res://.godot/imported/Dark_Tiles.aseprite-d762909b064fd7e3bcb51298f0834caa.res"]
+
+[params]
+

@@ -7,7 +7,7 @@ load_path = "res://.godot/imported/TheWizard.png-bb1edb7fd4275cb40338e246f4828f2
 
 [node name="Sprite2D" type="Sprite2D"]
 modulate = Color(0, 0, 0, 1)
-show_behind_parent = true
+top_level = true
 texture_filter = 1
 position = Vector2(16, 16)
 texture = SubResource("CompressedTexture2D_nmhju")

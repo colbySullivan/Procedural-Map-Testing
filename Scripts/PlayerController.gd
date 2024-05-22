@@ -22,12 +22,12 @@ var moving = false
 
 func _physics_process(delta):
 	# gravity and floor check
-	if is_on_floor() == false:
-		velocity.y += gravity * delta
-		can_jump = false
-	
-	else:
-		can_jump = true
+	#if is_on_floor() == false:
+		#velocity.y += gravity * delta
+		#can_jump = false
+	#
+	#else:
+		#can_jump = true
 		
 	horizontal_movement()
 	
@@ -54,7 +54,7 @@ func horizontal_movement():
 		velocity.x = lerp(velocity.x, 0.0, 1)
 
 func fall_check():
-	if position.y > 100:
+	if position.y > 2000:
 		get_tree().reload_current_scene()
 
 # handle animations

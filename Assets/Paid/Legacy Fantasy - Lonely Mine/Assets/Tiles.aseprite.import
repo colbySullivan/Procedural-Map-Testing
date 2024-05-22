@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://dhrio8n0s3qi4"
+path="res://.godot/imported/Tiles.aseprite-b4598da3f64043e03d9a2897aa1f7bf3.res"
+
+[deps]
+
+source_file="res://Assets/Paid/Legacy Fantasy - Lonely Mine/Assets/Tiles.aseprite"
+dest_files=["res://.godot/imported/Tiles.aseprite-b4598da3f64043e03d9a2897aa1f7bf3.res"]
+
+[params]
+

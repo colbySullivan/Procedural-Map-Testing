@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://ds1rmcbwtvdjn"
+path="res://.godot/imported/Tiles.aseprite-c4ec4ef3da24c4412f512b9f3c2a38e8.res"
+
+[deps]
+
+source_file="res://Assets/Paid/Legacy Fantasy - Forgotten Cemetery/Assets/Tiles.aseprite"
+dest_files=["res://.godot/imported/Tiles.aseprite-c4ec4ef3da24c4412f512b9f3c2a38e8.res"]
+
+[params]
+
