@@ -27,14 +27,16 @@ func _physics_process(delta):
 			velocity = Vector2.ZERO
 			
 	is_dashing()
-	horizontal_movement()
+	get_inputs()
 	check_animation_orientation()
 	move_and_slide()
 
-func horizontal_movement():
+func get_inputs():
 	# left and right movement
 	var direction = Input.get_vector("move_left","move_right","move_up","move_down")
 	velocity += direction * key_speed
+	if Input.is_action_pressed("regenerate"):
+		get_tree().reload_current_scene()
 
 # handle animations
 func check_animation_orientation():
