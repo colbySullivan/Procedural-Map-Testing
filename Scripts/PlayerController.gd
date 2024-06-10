@@ -74,6 +74,6 @@ func is_dashing():
 	else:
 		going_ghost = false
 
-
+# TODO Remove this and button later
 func _on_button_pressed():
 	get_tree().reload_current_scene()
