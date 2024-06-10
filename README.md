@@ -1,6 +1,7 @@
 # Wizard-Odyssey
 
 ## Procedural generation maps using the Gaea plugin
+### Gaea repo: https://github.com/BenjaTK/Gaea
 Engine view
 
 ![engine_demo](https://github.com/colbySullivan/Wizard-Odyssey/assets/88957296/2c582f22-a85d-4651-97f1-11265e756e77)
