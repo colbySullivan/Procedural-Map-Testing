@@ -1,6 +1,6 @@
-# Wizard-Odyssey
+# Procedural-Map-Testing 
 
-## Procedural generation maps using the Gaea plugin
+## Creates maps using the Gaea plugin
 ### Gaea repo: https://github.com/BenjaTK/Gaea
 Engine view
 
